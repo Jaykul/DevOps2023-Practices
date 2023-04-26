@@ -31,18 +31,27 @@ I am, of course, Joel Bennett.
 
 ---
 
+note: For those of you who came to this talk despite not knowing me, thank you, and let me introduce myself. I'm Joel Bennett, I'm from upstate New York by way of the grasslands of Guanacaste, Costa Rica. I have been "Jaykul" (pronounced J. Cool) online since the 1990s, and I'm currently the Principal DevOps Engineer at loanDepot! I've been a Microsoft PowerShell MVP for 14 years, an open source programmer for 25 years, a Christian for uhm, let's go with "over 40 years," and bilingual for, well ... longer than that.
+
+
 # About Me
 
 - Joel "Jaykul" Bennett
 - Principal DevOps Engineer @ loanDepot
 - [PoshCode.org](https://PoshCode.org): [/discord](https://discord.gg/PowerShell), [/slack](https://poshcode.org/slack), [/irc](https://poshcode.org/irc)
-- fosstodon.org/@jaykul (and [Twitter](https://twitter.com/Jaykul))
-- github.com/Jaykul (also [PoshCode](https://github.com/PoshCode))
+- [fosstodon.org/@jaykul](https://fosstodon.org/@jaykul) (and [Twitter](https://twitter.com/Jaykul))
+- [github.com/Jaykul](https://github.com/Jaykul) (also [PoshCode](https://github.com/PoshCode))
 
-note: For those of you who came to this talk despite not knowing me, thank you, and let me introduce myself. I'm Joel Bennett, I'm from upstate New York by way of the grasslands of Guanacaste, Costa Rica. I have been "Jaykul" (pronounced J. Cool) online since the 1990s, and I'm currently the Principal DevOps Engineer at loanDepot! I've been a Microsoft PowerShell MVP for 14 years, an open source programmer for 25 years, a Christian for uhm, let's go with "over 40 years," and bilingual for, well ... longer than that.
-<br/> You can find me on Discord (I've been running that PowerShell community on IRC, Slack and Discord for 15 or 16 years -- can I get a shout-out from anyone who's joined us and found helpful people?). You can also find me on Mastodon, and Twitter (sometimes), as well as on GitHub. I'm always happy to talk about PowerShell, Programming, DevOps, Software Design, etc.
 
-<!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
+![About Me:An Image of my Github Profile](images/github.png)
+
+<!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat"
+-->
+--
+
+<!-- .slide: data-background="url(images/github.png) bottom 0px left 0px/100% 100% no-repeat" -->
+
+note: You can find me on Discord (I've been running that PowerShell community on IRC, Slack and Discord for 15 or 16 years -- can I get a shout-out from anyone who's joined us and found helpful people?). You can also find me on Mastodon, and Twitter (sometimes), as well as on GitHub. I'm always happy to talk about PowerShell, Programming, DevOps, Software Design, etc.
 
 ---
 
@@ -85,7 +94,7 @@ note: Commands that people can figure out. Ideally, that they can figure out _wi
 2. Commands others can figure out
 3. Modules that work together
 
-note: Finally, modules full of commands that work together. That means they pipe to each other, and people who aren't me can guess which ones to use together. I'm not going to spend any time picking on other people today, but if a reasonable person picks up your module and wants to pipe A into B, and it doesn't work, that's a problem (see "desire paths" on your favorite image search).
+note: Finally, I prefer to share modules: collections of commands that work together. I want people who aren't to be able to guess which ones to use together. I'm not going to spend any time picking on other developers today, but if a reasonable person picks up your module and wants to pipe A into B, and it doesn't work, that's a problem (see "desire paths" on your favorite image search).
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" data-auto-animate -->
 
@@ -100,8 +109,8 @@ note: Finally, modules full of commands that work together. That means they pipe
 - Normal use shouldn't produce errors
 - It's ok not to handle every edge case
 
-note: Obviously in PowerShell it's relatively acceptable to let errors just come out of your command. However, you should do that by catching and re-throwing, not by just ignoring. There are a lot of explanations I could get into about why (sometimes exception only show up _when_ there's a try/catch), but this is not an error-handling talk, it's a patterns and practices talk so I can just say:
-<br/> Follow this template, and add custom handling when you want to suppress errors, turn them into warnings, or convert terminating exceptions into non-terminating errors or vice-versa.
+note: THe first aspect of code that won't embarrass you is error handling. Obviously in PowerShell it's relatively acceptable to let errors just come out of your command. However, you should do that by catching and re-throwing, not just ignoring. There are a lot of details we could get into about why (sometimes exception only show up _when_ there's a try/catch), but this is not an error-handling talk, it's a patterns and practices talk so I can just say:
+<br/> Follow this template...
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
 
@@ -124,11 +133,11 @@ function Test-Function {
 
 ```
 
-note: There could be more to this template (and there will be, later), but for the moment, the point is to start with a try/catch wrapped around the inside of your process block (and your begin and end blocks too, if you need them).
+note: Follow this template, and add custom handling when you want to handle or suppress errors, turn them into warnings, or convert terminating exceptions into non-terminating errors or vice-versa. There could be more to this template (and there will be, later), but for the moment, the point is to start with a try/catch wrapped around the inside of your process block (and your begin and end blocks too, if you need them).
 <br/>
-At a bare minimum, you're going to be rethrowing, to make sure that you don't get surprised by exceptions if someone wraps your code. I actually encourage you to test your code with `-ErrorAction Stop`, to help you identify potential problems.
+At a bare minimum, you're going to rethrow. That's to make sure that you don't get surprised by exceptions if someone wraps your code. I actually encourage you to test your code with `-ErrorAction Stop`, to help you identify potential problems.
 <br/>
-Remember that you **can** add additional try/catch statements inside, to wrap specific lines or handle particular errors. You can _of course_ handle particular errors even here, if you just need to customize the error message, or whatever, but this is the last stand -- you can't really do much to _recover_ here.
+Remember, this is the last stand -- you can't really do much to _recover_ here.
 <br/>
 Ok, let's look a real-world example: What happens if something in your `prompt` function has an error or throws an exception?
 
@@ -149,7 +158,7 @@ function prompt {
 function prompt {
     Write-Error "Typo"
     "$pwd> "
-    throw "grenade"
+    throw "water balloon"
 }
 ```
 
@@ -159,7 +168,7 @@ note: If we run these ...
 <br />First, we can see that _errors are just ignored_,
 <br />But when the prompt throws an exception, PowerShell ignores any output it's _already gotten_ and gives you the minimalist prompt instead
 <br />You're expected to _just know_ that this prompt means you should `Get-Error` and figure out what happened
-<br />(oh, someone threw a grenade, classic).
+<br />(oh, someone threw a water balloon, classic).
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
 
@@ -194,6 +203,8 @@ You can see I actually still got my prompt! But I also got a warning and we can 
 Of course, I don't really want to hide the errors.
 <br />
 If I throw an exception, it gets logged right along with the error, and we can look at both of them in `$PromptErrors`. Notice that it tells us which block caused each problem, and of course, in this case, we can just remove those blocks.
+<br />
+The point is: I couldn't fix the error, but I could "handle" it, not crash, and give you enough information so that _you_ can resolve the error.
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
 
@@ -222,9 +233,9 @@ $drip |
     Export-CliXml exception.logx
 ```
 
-note: I really just want to take a minute here to encourage you to (make it possible to) _log_ everything. When we're trying to track down a problem, it's extremely helpful if there are logable statements for each logic block -- you know what I mean, right? Within each branch of an `if`, or each statement of a `switch`, etc.
+note: One last point about not embarrassing ourselves. When there are problems, we want to make it as simple as possible for people to find where the problem is. How? (Make it possible to) _log_ everything. When we're trying to track down a problem, it's extremely helpful if there are log statements for each logic block -- you know what I mean, right? Within each branch of an `if`, or each statement of a `switch`, etc.
 <br/>
-There are **better** ways to log than what I'm showing you here, but if you don't have a logging solution, you could do a lot worse than writing it to the Information stream.
+There are probably **better** ways to log than what I'm showing you here, but if you don't have a logging solution, you could do a lot worse than writing it to the Information stream.
 <br/>
 The information stream (can be) timestamped and sourced, and it's full of objects, so you can capture it with the `-InformationVariable` parameter and use Export-CliXml to dump it to a file. It's pretty straight-forward, and can even be used across remoting.
 <br/>
@@ -261,7 +272,7 @@ OK, Now, let's improve the design...
 - Play well with others
 - **It's about good interfaces**
 
-Let's talk about how we decide what to writ!
+Let's talk about how we decide what to write!
 
 note: So. I told you that shareable code was about writing commands that make sense, and work together.
 <br/> What that means is that it's about designing good interfaces.
@@ -286,7 +297,7 @@ note: You're going to brainstorm, in a sense: How do you want to use it, or how 
 <br />
 Now, our goal is to design the command to make these scenarios that you come up with easier.
 <br />
-It's a good practice to start by writing down concrete examples of your answers to these questions, in pseudo code. It will help you get a feel for how you expect the command to work. When you do that, write them like this ...
+The best practice is to start by writing down concrete examples of your answers to these questions, in pseudo code. It will help you get a feel for how you expect the command to work. When you do that, write them like this ...
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
 
@@ -313,8 +324,8 @@ function Import-Configuration {
 
 note: When you start writing out the concrete examples, write them like this ...
 <br />Hopefully, you recognize this as comment-based help for the command -- and I'm very serious. The first thing you should do when you start writing a command, is write the help.
-<br />I'm not suggesting you can write all of the help before you write the command, but ...
-<br /> When you start writing down your ideas about how you're going to use the command, it can help you to visualize what you're going to be doing with the command, and that helps you think about the necessary parameters, what the output needs to be, etc.
+<br />Not all the help, but ...
+<br />When you start writing down your ideas about how you're going to use the command, it can help you to visualize what you're going to be doing with the command, and that helps you think about the necessary parameters, what the output needs to be, etc.
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
 
 ---
