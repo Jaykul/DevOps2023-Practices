@@ -631,3 +631,11 @@ note: Hopefully, you've already encountered the `[Parameter()]` attribute, and i
 <br />- ValueFromPipelineByPropertyName allows you to collect the value of a single property from each object. Of course, you can set up multiple parameters like this to collect multiple properties. This is a good fit when you don't have a specific object in mind, or when you only need the key identifier from it (e.g. `PSPath` for files).
 
 <!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
+
+---
+
+# Thanks
+
+https://github.com/Jaykul/DevOps2023-Practices
+
+<!-- .slide: data-background="url(images/ccbysa.png) bottom 10px left 200px/auto 80px no-repeat, url(images/summit.png) bottom 10px right 10px/auto 80px no-repeat, url(images/pshsummit.svg) bottom 10px left 65%/30% 80px no-repeat, url(images/background.jpg) bottom 0px left 0px/100% 100px no-repeat" -->
