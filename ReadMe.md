@@ -1,4 +1,6 @@
 ---
+title: "Patterns & Practices: Shareable Scripts and Functions"
+license: "CC-BY-SA 4.0"
 theme: white
 highlightTheme: nnfx-light # foundation  # school-book #
 transition: convex
@@ -8,7 +10,6 @@ controlsLayout: edges
 progress: true
 showSlideNumber: speaker
 fragments: true
-title: "#PSHSummit"
 ---
 
 # Tempting Fate {.r-fit-text}
